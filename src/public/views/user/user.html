@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>User</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+</head>
+
+<body>
+  <div class="container">
+    <nav class="nav justify-content-center">
+      <a class="nav-link active" href="/">Home</a>
+    </nav>
+    <div class="row">
+        <span id="spanlogin"></span>
+    </div>
+    <div class="row">
+      <div class="col-3"></div>
+      <div class="col-6">
+
+        <table id="table_id" class="table table-sm table-houver" style="width:100%">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">codigo</th>
+              <th scope="col">imagem</th>
+              <th scope="col">nome</th>
+              <th scope="col">tipo</th>
+              <th scope="col">categoria</th>
+              <th scope="col"><button type="button" class="enviar btn btn-primary btn rounded-circle" data-toggle="modal"
+                  data-target="#modelAdicionar"><i class="fas fa-plus fa-sm"></i></button> </th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+
+      <div class="col-3"></div>
+    </div>
+  </div>
+  </div>
+
+
+
+
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.css" />
+
+  <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.js"></script>
+
+
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css"
+    integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+  <script defer src="https://use.fontawesome.com/releases/v5.1.1/js/all.js"
+    integrity="sha384-BtvRZcyfv4r0x/phJt9Y9HhnN5ur1Z+kZbKVgzVBAlQZX4jvAuImlIz+bG7TS00a" crossorigin="anonymous">
+    </script>
+
+
+
+  <!-- Modal  adicionar-->
+  <div class="modal fade" id="modelAdicionar" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">adicionar</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id="formAdicionar" method="POST">
+            <label for="codigo">Codigo</label>
+            <input type="text" class="form-control" name="codigoCadastro">
+
+            <label for="nome">Nome</label>
+            <input type="text" class="form-control" name="nome">
+            <label for="tipo">Tipo</label>
+            <input type="text" class="form-control" name="tipo">
+            <label for="categoria">Categoria</label>
+            <input type="text" class="form-control" name="categoria">
+
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Save</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </form>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Modal Deletar -->
+  <div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Deletar</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+          <form id='form-delete' method="post">
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-danger">Deletar</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Editar-->
+  <div class="modal fade" id="modalEditar" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Editar</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id='formEditar' method="POST">
+            <label for="codigo">Codigo</label>
+            <input type="text" class="form-control" name="codigoCadastro" id="codigo_editar">
+            <label for="imagem">imagem</label>
+            <input type="file" name="imagem" id="imagemId">
+            <label for="nome">Nome</label>
+            <input type="text" class="form-control" name="nome" id="nome_editar" placeholder="">
+            <label for="tipo">Tipo</label>
+            <input type="text" class="form-control" name="tipo" id="tipo_editar" placeholder="">
+            <label for="categoria">Categoria</label>
+            <input type="text" class="form-control" name="categoria" id="categoria_editar" placeholder="">
+
+            <div class="modal-footer">
+              <button type="submit" id="atualizar" class="btn btn-primary">Atualizar</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let table;
+    $(document).ready(function () {
+      let url = window.location.href;
+      let id = url.charAt(url.length - 1);
+      console.log(id);
+      
+      let dataVeiculo = [];
+      $.ajax({
+        type: "GET",
+        url: `http://localhost:3000/user/${id}`,
+        success: function (response) {
+          response.forEach(element => {
+          
+            
+            document.getElementById('spanlogin').innerText=`Bem vindo user :${element.login}`;
+            creteTable();
+          });
+        }
+      });
+    });
+
+
+    function creteTable() {
+
+      $.ajax({
+        type: "GET",
+        url: `http://localhost:3000/veiculos`,
+        dataType: "json",
+        success: function (response) {
+          table = $('#table_id').DataTable({
+            ordering: false,
+            info: false,
+            processing: true,
+            destroy: true,
+            paging: true,
+            data: response,
+            dataType: "json",
+            columns: [{
+              "data": "codigoCadastro"
+            },
+            {
+              "data": "imagem"
+            },
+            {
+              "data": "nome"
+            },
+            {
+              "data": "tipo"
+            },
+            {
+              "data": "categoria"
+            },
+            {
+              "defaultContent": `  <button type="button" class="editar btn btn-xs btn-success rounded-circle " data-toggle="modal" data-target="#modalEditar"><i class="fas fa-edit fa-xs" ></i></button><button type="button"class=" deletar btn  btn-danger rounded-circle " data-toggle="modal" data-target="#modalDelete"><i class="fas fa-trash fa-xs"></i></button>`
+            }
+            ]
+          });
+          adicionar($('#formAdicionar'));
+          editar("#table_id tbody", table);
+          deletar("#table_id tbody", table);
+        }
+      });
+
+      const adicionar = function (form) {
+       form.submit(function (e) { 
+         console.log("ola estou aqui no forms adcionar");
+         
+        document.getElementById('formAdicionar').action = `/veiculo/adicionarVeiculo`;  
+       });
+      }
+
+      const editar = function (tbody, table) {
+        $(tbody).on('click', 'button.editar', function () {
+          let data = table.row($(this).parents('tr')).data();
+          $('#nome_editar').val(data.nome);
+          $('#codigo_editar').val(data.codigoCadastro);
+          $('#tipo_editar').val(data.tipo);
+          $('#categoria_editar').val(data.categoria);
+          $('#atualizar').click(function (event) {
+            console.log(document.getElementById('formEditar'));
+
+            document.getElementById('formEditar').action = `/veiculo/update/${data.id}`;
+          })
+        })
+      }
+
+      const deletar = function (tbody, table) {
+        $(tbody).on('click', 'button.deletar', function () {
+          let data = table.row($(this).parents('tr')).data();
+          console.log(data);
+
+          document.getElementById('form-delete').action = `/veiculo/deletar/${data.id}`
+        })
+      }
+
+    }
+  </script>
+</body>
+
+</html>
